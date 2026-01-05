@@ -8,7 +8,8 @@ import com.inventario.inventario_rest.ventas.repository.VentaDetalleRepository;
 import com.inventario.inventario_rest.ventas.repository.VentaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import org.springframework.data.domain.Sort;
+import java.util.List;
 import java.time.OffsetDateTime;
 
 @Service
@@ -72,5 +73,9 @@ public class VentaService {
         }
 
         return ventaId;
+    }
+
+    public List<Venta> listarVentas() {
+       return ventaRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
     }
 }
