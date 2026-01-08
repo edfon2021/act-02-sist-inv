@@ -42,4 +42,24 @@ public class VentaController {
                 .body(Map.of("error", "Error al obtener ventas"));
          }
      }
+
+     @GetMapping("/detalle/{id}")
+     public ResponseEntity<?> obtenerDetalle(@PathVariable Long id) {
+          try {
+              return ResponseEntity.ok(ventaService.obtenerDetalleVenta(id));
+             } catch (Exception e) {
+           return ResponseEntity.status(500)
+                .body(Map.of("error", "Error interno al obtener detalle de venta"));
+    }
+}
+
+@GetMapping("/resumen")
+public ResponseEntity<?> listarResumen() {
+    try {
+        return ResponseEntity.ok(ventaService.listarVentasResumen());
+    } catch (Exception e) {
+        return ResponseEntity.status(500)
+                .body(Map.of("error", "Error interno al obtener resumen de ventas"));
+    }
+}
 }

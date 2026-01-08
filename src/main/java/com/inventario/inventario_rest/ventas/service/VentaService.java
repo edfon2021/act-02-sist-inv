@@ -1,7 +1,9 @@
 package com.inventario.inventario_rest.ventas.service;
 
 import com.inventario.inventario_rest.ventas.dto.VentaDetalleDTO;
+import com.inventario.inventario_rest.ventas.dto.VentaDetalleViewDTO;
 import com.inventario.inventario_rest.ventas.dto.VentaRequest;
+import com.inventario.inventario_rest.ventas.dto.VentaResumenDTO;
 import com.inventario.inventario_rest.ventas.entity.Venta;
 import com.inventario.inventario_rest.ventas.entity.VentaDetalle;
 import com.inventario.inventario_rest.ventas.repository.VentaDetalleRepository;
@@ -77,5 +79,15 @@ public class VentaService {
 
     public List<Venta> listarVentas() {
        return ventaRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+    }
+
+    @Transactional(readOnly = true)
+    public List<VentaDetalleViewDTO> obtenerDetalleVenta(Long ventaId) {
+       return ventaDetalleRepository.findDetalleByVentaId(ventaId);
+     }
+
+     @Transactional(readOnly = true)
+    public List<VentaResumenDTO> listarVentasResumen() {
+      return ventaRepository.findVentasResumen();
     }
 }
