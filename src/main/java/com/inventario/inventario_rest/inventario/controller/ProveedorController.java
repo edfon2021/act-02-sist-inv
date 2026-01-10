@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin(origins = "*") // <--- AÑADE ESTA LÍNEA AQUÍ
 @RequestMapping("/api")
 public class ProveedorController {
 
